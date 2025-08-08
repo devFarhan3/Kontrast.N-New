@@ -99,7 +99,7 @@ body {
 
 .date-section {
     font-size: 1rem;
-    font-weight: 500;
+   font-weight: 700;
     color: var(--text-color);
     cursor: pointer;
     padding-left: 7px;
@@ -111,6 +111,18 @@ body {
     gap: 10px;
     margin: 15px 0px;
 }
+
+
+/* .date-section:after {
+    border-top: 1px solid #000;
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 8px;
+    right: auto;
+    bottom: 0;
+    width: 42%;
+} */
 
 .time-tab-btn {
     cursor: pointer;
@@ -214,6 +226,9 @@ body {
 
 .accordion {
     --bs-accordion-btn-icon-width: 15px;
+    max-height: 400px;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 .accordion-button:not(.collapsed) {
