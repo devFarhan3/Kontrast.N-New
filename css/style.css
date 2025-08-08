@@ -99,7 +99,7 @@ body {
 
 .date-section {
     font-size: 1rem;
-   font-weight: 700;
+    font-weight: 700;
     color: var(--text-color);
     cursor: pointer;
     padding-left: 7px;
@@ -196,7 +196,7 @@ body {
 
 .intro-text-section h5 {
     margin-top: 0rem;
-  font-size: 0.9rem;
+    font-size: 0.9rem;
     font-weight: 400;
 }
 
