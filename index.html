@@ -380,13 +380,13 @@
                     this.y = y;
                     this.radius = 0;
                     this.alpha = 1;
-                    this.lineWidth = 3;
+                    this.lineWidth = 2;
                     this.color = `rgba(${color}, `;
                 }
                 update() {
                     this.radius += 2;
                     this.alpha -= 0.015;
-                    this.lineWidth *= 0.95;
+                    this.lineWidth *= 0.8;
                 }
                 draw() {
                     ctx.beginPath();
