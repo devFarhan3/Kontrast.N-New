@@ -55,6 +55,13 @@ body {
     transition: background-color 0.5s ease;
     background-color: var(--background-color);
     overflow: hidden;
+   
+}
+
+body{
+     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #mouseAnimationCanvas {
@@ -70,13 +77,13 @@ body {
 .mobile-frame {
     width: 316px;
    
-    height: 100vh;
+    height: 653px;
     background-image: var(--mobile-frame-bg-image);
     background-color: transparent;
     position: relative;
     overflow: hidden;
     display: flex;
-    background-size: cover;
+   background-size: 316px 653px;
     background-position: center;
     flex-direction: column;
    padding: 20px 20px 5px 20px;
@@ -103,7 +110,7 @@ body {
     font-weight: 700;
     color: var(--text-color);
     cursor: pointer;
-    padding-left: 7px;
+    padding-left: 0;
 }
 
 .time-tabs {
@@ -181,17 +188,17 @@ body {
 }
 
 .intro-text-section {
-    padding: 20px 7px;
+   padding: 20px 0px 0px;
     flex-grow: 1;
-
     overflow-y: auto;
-    max-height: 70vh;
+    max-height: 100%;
     scrollbar-width: none;
+
 }
 
 .intro-text-section p {
     color: var(--text-color);
-    margin-bottom: 1rem;
+    margin-bottom: 14px;
     font-size: 0.9rem;
 }
 
@@ -202,8 +209,15 @@ body {
 }
 
 .intro-text-section .sub-text {
-    color: var(--text-color);
-    font-size: 0.9rem;
+    /* color: var(--text-color); */
+    font-size: 14px;
+    color: var(--bs-secondary-color) !important;
+}
+
+.dark-mode .intro-text-section .sub-text {
+    color:#fff !important;
+    font-size: 14px;
+    /* color: var(--bs-secondary-color) !important; */
 }
 
 .accordion-item {
@@ -281,6 +295,11 @@ body {
 
 .d-none {
     display: none !important;
+}
+
+
+@media (min-width: 1366px)  {
+
 }
 
 @media (max-width: 768px) {
