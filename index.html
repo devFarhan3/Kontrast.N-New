@@ -24,12 +24,17 @@
         <div class="header">
          
             <div id="headerTitle" class="date-section">KONTRAST.JOURNAL</div>
+           <div class="years_sec" id="years_sec">
+                <span class="year me-2"><a href="#" class="year-link " data-year="2025">2025</a></span>
+                <span class="year me-2"><a href="#" class="year-link" data-year="2024">2024</a></span>
+                <span class="year me-2"><a href="#" class="year-link" data-year="2023">2023</a></span>
+            </div>
             <div id="categoryTabsContainer" class="d-none">
                 <div id="timeTabs" class="time-tabs d-flex">
-                    <span class="time-tab-btn systemsTab" data-time="Systems" id="systemsTab">Systems</span>
-                    <span class="time-tab-btn matterTab" data-time="Matter" id="matterTab">Matter</span>
-                    <span class="time-tab-btn organicsTab" data-time="Organics" id="organicsTab">Organics</span>
-                    <span class="time-tab-btn dissonaceTab" data-time="Dissonace" id="dissonaceTab">Dissonace</span>
+                    <span class="time-tab-btn systemsTab" data-time="Systems" id="systemsTab">Systeme</span>
+                    <span class="time-tab-btn matterTab" data-time="Matter" id="matterTab">Materie</span>
+                    <span class="time-tab-btn organicsTab" data-time="Organics" id="organicsTab">Organisches</span>
+                    <span class="time-tab-btn dissonaceTab" data-time="Dissonace" id="dissonaceTab">Dissonanz</span>
                 </div>
             </div>
             <button id="darkModeToggle" aria-label="Toggle Dark Mode">
@@ -53,10 +58,13 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   
 
-    <script>
+   <script>
         document.addEventListener('DOMContentLoaded', () => {
             const headerTitle = document.getElementById('headerTitle');
+            const yearsSec = document.getElementById('years_sec');
+            const yearLinks = document.querySelectorAll('.year-link');
             const categoryTabsContainer = document.getElementById('categoryTabsContainer');
             const timeTabButtons = document.querySelectorAll('.time-tab-btn');
             const contentSection = document.getElementById('contentSection');
@@ -65,7 +73,8 @@
             const darkModeToggle = document.getElementById('darkModeToggle');
             const body = document.body;
 
-            // German introductory text
+            let currentYear = '2025';
+
             const introText = {
                 title: "Ein Raum für Gedanken, die sich weigern, in Schubladen zu passen.",
                 sections: [{
@@ -79,135 +88,173 @@
                     subtext: "(Natur | Ökologie | Leben) <br> Was wächst, was atmet, was uns überdauert – und warum wir es trotzdem ignorieren."
                 }, {
                     category: "DISSONACE",
-                    subtext: "(Konflikt | Widerstand | Reibung) <br> Die Schönheit des Widerspruchs, der Lärm des Neuen, das Unbehagen am Gewohnten."
+                    subtext: "(Konflikt | Widerstand | Reibung) <br> Die Schönheit des Widerspruchs, der Lärm des Neuen, das Unbehagen am Gewohnten."
                 }]
             };
 
-            const allNewsData = {
-                "Systems": [{
-                    id: "Systems-1",
-                    headline: "Volunteers Save Afghan Care For Millions",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=News+Image+1",
-                    caption: "Blake, Wm. Christ Raising Jairus’s Daughter. 1799.",
-                    text: `UNICEF has prevented the collapse of two-thirds of Afghanistan’s healthcare system by running 96 hospitals and 2,400 clinics with 28,000 staff and 32,000 volunteers. The effort has supported over 2.2 million births since 2021. Working mostly in remote valleys, volunteers provide critical care, vaccinations, and health education to communities once isolated from modern infrastructure.`
-                }, {
-                    id: "Systems-2",
-                    headline: "Garden Found Beneath Jesus' Burial Site",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=News+Image+2",
-                    caption: "Archaeological discovery in Jerusalem.",
-                    text: `A significant archaeological discovery has been made beneath the traditional burial site of Jesus, revealing what experts believe to be an ancient garden. This finding provides new insights into the historical context of the area.`
-                }, {
-                    id: "Systems-3",
-                    headline: "Hands-Free 'Flying Car' Test Succeeds",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=News+Image+3",
-                    caption: "Future of personal transport takes flight.",
-                    text: `In a groundbreaking demonstration, a prototype 'flying car' successfully completed its first hands-free test flight. This marks a major step forward in the development of autonomous aerial vehicles for personal transportation.`
-                }, {
-                    id: "Systems-4",
-                    headline: "Israel Kills New Hamas Prime Minister",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=News+Image+4",
-                    caption: "Tensions escalate in the region.",
-                    text: `Reports indicate that Israeli forces have carried out an operation resulting in the death of the newly appointed Hamas Prime Minister. This event is expected to significantly impact the geopolitical landscape and ongoing conflicts.`
-                }, {
-                    id: "Systems-5",
-                    headline: "RFK Jr. Cuts 10,000 Health Jobs",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=News+Image+5",
-                    caption: "Controversial move impacts healthcare sector.",
-                    text: `In a controversial decision, RFK Jr.'s administration has announced significant cuts to health sector jobs, affecting over 10,000 positions. The move has drawn criticism from public health organizations and labor unions.`
-                }],
-                "Matter": [{
-                    id: "Matter-1",
-                    headline: "EU Aims To Stop Iran From Getting Nukes",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=News+Image+6",
-                    caption: "Diplomatic efforts intensify.",
-                    text: `The European Union is intensifying diplomatic efforts to prevent Iran from developing nuclear weapons. Discussions are ongoing to find a peaceful resolution and ensure regional stability.`
-                }, {
-                    id: "Matter-2",
-                    headline: "Viral Anime Image Trend Overloads AI",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=News+Image+7",
-                    caption: "Popular trend strains artificial intelligence systems.",
-                    text: `A new viral trend involving anime-style image generation has reportedly overloaded several AI systems, leading to slowdowns and service interruptions. Experts are advising caution with resource-intensive online activities.`
-                }, {
-                    id: "Matter-3",
-                    headline: "Americans Increasingly Tap 401(k)s Early",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=News+Image+8",
-                    caption: "Economic pressures lead to early withdrawals.",
-                    text: `A growing number of Americans are reportedly tapping into their 401(k) retirement savings earlier than planned, a trend attributed to increasing economic pressures and rising cost of living.`
-                }, {
-                    id: "Matter-4",
-                    headline: "Europe Issues U.S. Travel Warning",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=News+Image+9",
-                    caption: "Advisory due to health and safety concerns.",
-                    text: `Several European nations have issued travel warnings for the United States, citing various health and safety concerns. Travelers are advised to check official government advisories before planning trips.`
-                }, {
-                    id: "Matter-5",
-                    headline: "Nigerian Farmers Turn To Solar Pumps",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=News+Image+10",
-                    caption: "Sustainable solutions for agriculture.",
-                    text: `In a move towards sustainable agriculture, Nigerian farmers are increasingly adopting solar-powered irrigation pumps. This initiative aims to improve crop yields and reduce reliance on traditional, less efficient methods.`
-                }],
-                "Organics": [{
-                    id: "Organics-1",
-                    headline: "New Space Telescope Discovers Exoplanet",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=News+Image+11",
-                    caption: "Astronomers excited by new findings.",
-                    text: `A newly launched space telescope has made its first significant discovery: a potentially habitable exoplanet orbiting a distant star. This breakthrough opens new avenues for the search for extraterrestrial life.`
-                }, {
-                    id: "Organics-2",
-                    headline: "Global Food Prices Expected to Rise",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=News+Image+12",
-                    caption: "Supply chain issues and climate impact.",
-                    text: `Analysts predict a significant increase in global food prices over the coming months, attributed to ongoing supply chain disruptions and the impact of climate change on agricultural output.`
-                }, {
-                    id: "Organics-3",
-                    headline: "AI Ethics Debate Heats Up in Congress",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=News+Image+13",
-                    caption: "Legislators grapple with artificial intelligence regulations.",
-                    text: `The debate over artificial intelligence ethics has intensified in Congress, with lawmakers discussing potential regulations for AI development and deployment to ensure responsible innovation.`
-                }, {
-                    id: "Organics-4",
-                    headline: "Major Cyberattack Hits Financial Institutions",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=News+Image+14",
-                    caption: "Security breaches cause widespread concern.",
-                    text: `Several major financial institutions have been targeted in a sophisticated cyberattack, leading to temporary service disruptions and heightened concerns about digital security across the sector.`
-                }, {
-                    id: "Organics-5",
-                    headline: "Breakthrough in Cancer Treatment Announced",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=News+Image+15",
-                    caption: "New therapy shows promising results.",
-                    text: `Scientists have announced a significant breakthrough in cancer treatment, with a new experimental therapy showing highly promising results in clinical trials. This development offers new hope for patients worldwide.`
-                }],
-        "Dissonace": [{
-                    id: "Dissonace-1",
-                    headline: "Tensions High as Protests Erupt Over Climate Policy",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=Protest+Image+1",
-                    caption: "Environmental activists clash with authorities during a demonstration.",
-                    text: `Widespread protests have erupted in major cities as environmental groups voice their opposition to a new government climate policy. Activists argue the policy prioritizes economic growth over ecological preservation, leading to heated clashes with law enforcement and public debate over the nation's environmental future.`
-                }, {
-                    id: "Dissonace-2",
-                    headline: "Controversy Over Public Art Project Splits City",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=Art+Debate",
-                    caption: "A large-scale public sculpture becomes the center of a local art debate.",
-                    text: `A new public art installation has ignited a fierce debate among residents. Supporters praise the work as a bold, modern addition to the city's landscape, while critics denounce it as an eyesore and a misuse of public funds. The controversy highlights the tension between creative expression and community values.`
-                }, {
-                    id: "Dissonace-3",
-                    headline: "Ethical Concerns Arise Over New AI Algorithm",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=AI+Ethics",
-                    caption: "Experts question the moral implications of an algorithm's decision-making.",
-                    text: `A newly released AI algorithm designed for judicial sentencing has sparked ethical concerns. Civil rights advocates and tech experts warn that the algorithm's lack of transparency and potential for bias could lead to inequitable outcomes, raising difficult questions about the role of technology in justice.`
-                }, {
-                    id: "Dissonace-4",
-                    headline: "Labor Unions Call for Strike Amidst Stalled Negotiations",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=Strike+Image",
-                    caption: "Union leaders rally members for a potential nationwide work stoppage.",
-                    text: `Negotiations between a major corporation and its labor unions have reached a stalemate. With no resolution in sight, union leaders have called for a nationwide strike, demanding better wages and working conditions. The potential strike could cause significant economic disruption and sets the stage for a major industrial conflict.`
-                }, {
-                    id: "Dissonace-5",
-                    headline: "Scientific Community Divided on New Particle Discovery",
-                    image: "https://placehold.co/300x200/cccccc/333333?text=Science+Debate",
-                    caption: "Physicists debate the implications of a new discovery that challenges existing theories.",
-                    text: `The physics community is in a state of discord following the announcement of a new particle discovery. While some scientists hail it as a groundbreaking find, others are skeptical, arguing that the data is inconclusive. The heated debate reveals a fundamental friction between competing theories and research methodologies.`
-                }]
+            const journalData = {
+                "2025": {
+                    "Systems": [{
+                        id: "Systems-2025-1",
+                        headline: "Volunteers Save Afghan Care For Millions",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2025+Systems+1",
+                        caption: "Blake, Wm. Christ Raising Jairus’s Daughter. 1799.",
+                        text: `UNICEF has prevented the collapse of two-thirds of Afghanistan’s healthcare system by running 96 hospitals and 2,400 clinics with 28,000 staff and 32,000 volunteers. The effort has supported over 2.2 million births since 2021.`
+                    }, {
+                        id: "Systems-2025-2",
+                        headline: "Garden Found Beneath Jesus' Burial Site",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2025+Systems+2",
+                        caption: "Archaeological discovery in Jerusalem.",
+                        text: `A significant archaeological discovery has been made beneath the traditional burial site of Jesus, revealing what experts believe to be an ancient garden.`
+                    }, ],
+                    "Matter": [{
+                        id: "Matter-2025-1",
+                        headline: "EU Aims To Stop Iran From Getting Nukes",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2025+Matter+1",
+                        caption: "Diplomatic efforts intensify.",
+                        text: `The European Union is intensifying diplomatic efforts to prevent Iran from developing nuclear weapons.`
+                    }, {
+                        id: "Matter-2025-2",
+                        headline: "Viral Anime Image Trend Overloads AI",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2025+Matter+2",
+                        caption: "Popular trend strains artificial intelligence systems.",
+                        text: `A new viral trend involving anime-style image generation has reportedly overloaded several AI systems.`
+                    }, ],
+                    "Organics": [{
+                        id: "Organics-2025-1",
+                        headline: "New Space Telescope Discovers Exoplanet",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2025+Organics+1",
+                        caption: "Astronomers excited by new findings.",
+                        text: `A newly launched space telescope has made its first significant discovery: a potentially habitable exoplanet.`
+                    }, {
+                        id: "Organics-2025-2",
+                        headline: "Global Food Prices Expected to Rise",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2025+Organics+2",
+                        caption: "Supply chain issues and climate impact.",
+                        text: `Analysts predict a significant increase in global food prices over the coming months.`
+                    }, ],
+                    "Dissonace": [{
+                        id: "Dissonace-2025-1",
+                        headline: "Tensions High as Protests Erupt Over Climate Policy",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2025+Dissonace+1",
+                        caption: "Environmental activists clash with authorities during a demonstration.",
+                        text: `Widespread protests have erupted in major cities as environmental groups voice their opposition to a new government climate policy.`
+                    }, {
+                        id: "Dissonace-2025-2",
+                        headline: "Controversy Over Public Art Project Splits City",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2025+Dissonace+2",
+                        caption: "A large-scale public sculpture becomes the center of a local art debate.",
+                        text: `A new public art installation has ignited a fierce debate among residents.`
+                    }, ]
+                },
+                "2024": {
+                    "Systems": [{
+                        id: "Systems-2024-1",
+                        headline: "Quantum Computing Breakthrough Achieved",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2024+Systems+1",
+                        caption: "Major step towards next-gen supercomputers.",
+                        text: `Researchers announced a significant breakthrough in quantum computing, achieving unprecedented stability and error correction.`
+                    }, {
+                        id: "Systems-2024-2",
+                        headline: "New Regulations for Social Media Platforms",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2024+Systems+2",
+                        caption: "Governments worldwide pass new laws.",
+                        text: `New international regulations have been passed to govern content moderation and data privacy on social media platforms.`
+                    }, ],
+                    "Matter": [{
+                        id: "Matter-2024-1",
+                        headline: "Fusion Energy Reactor Reaches Milestone",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2024+Matter+1",
+                        caption: "Clean energy source gets closer to reality.",
+                        text: `A prototype fusion reactor has successfully sustained a reaction for a record duration, bringing the goal of unlimited clean energy closer.`
+                    }, {
+                        id: "Matter-2024-2",
+                        headline: "New Sustainable Building Material Unveiled",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2024+Matter+2",
+                        caption: "Architects celebrate a new eco-friendly option.",
+                        text: `A new material made from recycled plastics and wood fibers has been developed, offering a highly durable and sustainable alternative for construction.`
+                    }, ],
+                    "Organics": [{
+                        id: "Organics-2024-1",
+                        headline: "Genetic Engineering Cures Major Disease",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2024+Organics+1",
+                        caption: "Medical science takes a leap forward.",
+                        text: `A team of scientists has successfully used CRISPR technology to permanently cure a genetic disorder in human trials.`
+                    }, {
+                        id: "Organics-2024-2",
+                        headline: "Global Biodiversity Decline Accelerates",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2024+Organics+2",
+                        caption: "Urgent calls for conservation efforts.",
+                        text: `A new report from the UN reveals that the rate of biodiversity loss has accelerated, with more species facing extinction.`
+                    }, ],
+                    "Dissonace": [{
+                        id: "Dissonace-2024-1",
+                        headline: "Protests Over Economic Inequality Escalate",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2024+Dissonace+1",
+                        caption: "Widespread demonstrations call for reform.",
+                        text: `Mass protests have erupted across several countries, fueled by growing public frustration over economic inequality.`
+                    }, {
+                        id: "Dissonace-2024-2",
+                        headline: "Cultural Clashes Arise in Digital Spaces",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2024+Dissonace+2",
+                        caption: "Online communities struggle with conflicting values.",
+                        text: `Online platforms are seeing a rise in conflicts between different cultural groups over issues of free speech and community standards.`
+                    }, ]
+                },
+                "2023": {
+                    "Systems": [{
+                        id: "Systems-2023-1",
+                        headline: "International Treaty on AI Regulation Signed",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2023+Systems+1",
+                        caption: "Global leaders agree on ethical guidelines for artificial intelligence.",
+                        text: `A historic international treaty was signed to establish a framework for the ethical development and use of artificial intelligence.`
+                    }, {
+                        id: "Systems-2023-2",
+                        headline: "Digital Currency Adoption Grows in Developing Nations",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2023+Systems+2",
+                        caption: "Cryptocurrencies offer new financial opportunities.",
+                        text: `Countries in Africa and Southeast Asia are increasingly adopting digital currencies as a solution to financial instability.`
+                    }, ],
+                    "Matter": [{
+                        id: "Matter-2023-1",
+                        headline: "New Material Discovered by Scientists",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2023+Matter+1",
+                        caption: "Element with unique properties could revolutionize technology.",
+                        text: `Scientists have synthesized a new, ultra-lightweight material with immense tensile strength, promising applications in aerospace and construction.`
+                    }, {
+                        id: "Matter-2023-2",
+                        headline: "Architects Embrace Bio-Integrated Buildings",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2023+Matter+2",
+                        caption: "Buildings designed to work with nature, not against it.",
+                        text: `A new architectural movement focuses on buildings that incorporate living organisms, such as algae for energy and plants for climate control.`
+                    }, ],
+                    "Organics": [{
+                        id: "Organics-2023-1",
+                        headline: "Climate Change Impacts Global Agriculture",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2023+Organics+1",
+                        caption: "Extreme weather threatens crop yields worldwide.",
+                        text: `A new study reveals that climate change is causing more frequent and severe droughts and floods, significantly impacting global food production.`
+                    }, {
+                        id: "Organics-2023-2",
+                        headline: "Ocean Cleanup Project Shows Promising Results",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2023+Organics+2",
+                        caption: "Innovative technology collects tons of plastic from the sea.",
+                        text: `An ambitious project to clean up the Pacific Ocean has successfully removed a significant amount of plastic waste, demonstrating the effectiveness of new marine technology.`
+                    }, ],
+                    "Dissonace": [{
+                        id: "Dissonace-2023-1",
+                        headline: "Geopolitical Tensions Rise Over Resource Scarcity",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2023+Dissonace+1",
+                        caption: "Nations clash over dwindling water and mineral supplies.",
+                        text: `Conflicts between nations are increasing as global warming and over-extraction lead to a scarcity of essential resources like water and rare earth minerals.`
+                    }, {
+                        id: "Dissonace-2023-2",
+                        headline: "Public Trust in Media Reaches All-Time Low",
+                        image: "https://placehold.co/300x200/cccccc/333333?text=2023+Dissonace+2",
+                        caption: "Survey shows widespread skepticism towards news sources.",
+                        text: `A new poll indicates that public trust in traditional media outlets has plummeted, a trend attributed to the rise of misinformation and polarized reporting.`
+                    }, ]
+                }
             };
 
             function renderIntroText() {
@@ -220,9 +267,9 @@
                 `;
             }
 
-            function renderNewsHeadlines(category) {
+            function renderNewsHeadlines(year, category) {
                 newsHeadlinesSection.innerHTML = '';
-                const newsData = allNewsData[category] || [];
+                const newsData = journalData[year]?.[category] || [];
 
                 if (newsData.length > 0) {
                     newsData.forEach(newsItem => {
@@ -249,7 +296,6 @@
                 }
             }
 
-            // Categories and their corresponding colors for the animation
             const CATEGORY_COLORS = {
                 "Systems": "143, 179, 199",
                 "Matter": "193, 124, 101",
@@ -257,7 +303,6 @@
                 "Dissonace": "154, 134, 164"
             };
 
-            // Text colors for the active tab
             const CATEGORY_TEXT_COLORS = {
                 "Systems": "#8FB3C7",
                 "Matter": "#C17C65",
@@ -268,12 +313,10 @@
             let currentAnimationColor;
             let isCategoryView = false;
 
-            // Event listener for category tabs
             timeTabButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const category = button.dataset.time;
 
-                    // Update active tab styles
                     timeTabButtons.forEach(btn => {
                         btn.classList.remove('active');
                         btn.style.color = 'var(--text-color)';
@@ -285,8 +328,7 @@
                     button.style.color = categoryColor;
                     button.style.setProperty('--active-color', categoryColor);
 
-                    // Render news and update animation color
-                    renderNewsHeadlines(category);
+                    renderNewsHeadlines(currentYear, category);
                     currentAnimationColor = CATEGORY_COLORS[category];
                 });
             });
@@ -294,22 +336,19 @@
             headerTitle.addEventListener('click', () => {
                 isCategoryView = !isCategoryView;
                 if (isCategoryView) {
-                    // Show categories and hide intro text
                     categoryTabsContainer.classList.remove('d-none');
                     introTextSection.classList.add('d-none');
                     newsHeadlinesSection.classList.remove('d-none');
-                    renderNewsHeadlines(timeTabButtons[0].dataset.time); // Load first category by default
+                    renderNewsHeadlines(currentYear, timeTabButtons[0].dataset.time);
                     currentAnimationColor = CATEGORY_COLORS[timeTabButtons[0].dataset.time];
                     timeTabButtons[0].classList.add('active');
                     timeTabButtons[0].style.color = CATEGORY_TEXT_COLORS[timeTabButtons[0].dataset.time];
                 } else {
-                    // Hide categories and show intro text
                     categoryTabsContainer.classList.add('d-none');
                     introTextSection.classList.remove('d-none');
                     newsHeadlinesSection.classList.add('d-none');
                     renderIntroText();
-                    
-                    // Reset active category styling
+
                     timeTabButtons.forEach(btn => {
                         btn.classList.remove('active');
                         btn.style.color = 'var(--text-color)';
@@ -317,7 +356,6 @@
                 }
             });
 
-            // Dark Mode Toggle
             const DARK_MODE_KEY = 'darkModeEnabled';
 
             function applyDarkMode(enable) {
@@ -341,7 +379,6 @@
                 applyDarkMode(!isCurrentlyDarkMode);
             });
 
-            // Mouse Animation Canvas
             const canvas = document.getElementById('mouseAnimationCanvas');
             const ctx = canvas.getContext('2d');
             const particles = [];
@@ -431,9 +468,35 @@
                 requestAnimationFrame(animateMouseEffects);
             }
 
-            // Initial load state
             renderIntroText();
             animateMouseEffects();
+
+            document.querySelectorAll('.years_sec a').forEach(yearLink => {
+                yearLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    yearLinks.forEach(link => link.classList.remove('active-year'));
+                    yearLink.classList.add('active-year');
+                    
+                    currentYear = yearLink.dataset.year;
+
+                    categoryTabsContainer.classList.remove('d-none');
+                    introTextSection.classList.add('d-none');
+                    newsHeadlinesSection.classList.remove('d-none');
+                    
+                    timeTabButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.style.color = 'var(--text-color)';
+                    });
+                    
+                    timeTabButtons[0].classList.add('active');
+                    timeTabButtons[0].style.color = CATEGORY_TEXT_COLORS[timeTabButtons[0].dataset.time];
+
+                    renderNewsHeadlines(currentYear, timeTabButtons[0].dataset.time);
+                    currentAnimationColor = CATEGORY_COLORS[timeTabButtons[0].dataset.time];
+                });
+            });
+
         });
     </script>
 
