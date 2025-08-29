@@ -269,6 +269,11 @@ body {
     padding: 8px;
 }
 
+.blog-heading {
+    font-weight: bold;
+    color: rgb(21 27 33 / 75%) !important;
+}
+
 .footer {
     padding: 10px;
     text-align: center;
