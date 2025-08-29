@@ -42,6 +42,11 @@
 
 }
 
+
+.dark-mode .text-muted {
+    color: #fff !important;
+}
+
 .dark-mode .accordion-button {
     background-color: #1a1a1a;
 }
